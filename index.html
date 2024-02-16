@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>Profile Website</title>
     <style>
@@ -9,38 +10,155 @@
         header {
             background-color: #343;
             color: white;
-            padding: 20px;
-            text-align: left;
+            padding: 50px;
+            text-align: center;
+            font-family: Calibri;
         }
         img {
-            max-width: 100%;
-            height: auto;
-            float: right;
-         }
-    </style>
+    max-width: 20%;
+    display: block;
+    padding-right: 150px;
+    float : right; /* this will horizontally center the image */
+}
+.one {
+    text-align: center;
+    font-size: 20px;
+    
+}
+
+
+
+.about {
+    text-align: left;    
+    padding: 50px; 
+    padding-left: 150px;
+    border-radius: 5px; 
+    width: 40%; 
+    font-size: 25px;
+}
+.backr {
+      text-align: center;
+      font-size: 22px;
+
+}
+.button {
+    padding: 10px 20px;
+    background-color: gray;
+    color: Black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 22px;
+    font-style: "Times new Roman";
+}
+.button:hover {
+    background-color: darkgray;
+}
+.visit{
+    padding-top:100px;
+  
+}
+
+
+
+
+
+</style>
 </head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <body>
+
+
     <header>
         <h1>Abhiram Unnam</h1>
-        <img src="IMG_5199.png" alt="Headshot">
-        <p>Contact Information:<br>
-        Email: unnamam@mail.uc.edu<br>
-        Phone: +1 (513) 349-4284</p>
     </header>
+    <div class="one">
+        <img src="IMG_5199.png" alt="Headshot">
+        
+       
+        
+    </div>
+        
+        
+        
+    <div class="about">
+        <h2> Hello, I'm Abhiram </h2>
+        <p> I am currently pursuing my Masters in Information Technology from University of Cincinnati. 
+            I am interested in Programming and solving critical problems. My interests lies in exploring new domains,
+            and I am currently learning Web Development using HTML and CSS.
+         </p>
+        
+    </div>
+    <hr>
+
+    <div class="one">
+        <h2>Contact Information</h2>
+        Email: <i class="material-icons" style="vertical-align: middle;">&#xe158;</i> abhiramunnam@gmail.com<br>
+        Mobile: <i class="material-icons" style="vertical-align: middle;">&#xe0b0;</i> +1 (513) 349-4284<br>
+        Cincinnati, United States<br>
+        <a href=https://www.linkedin.com/in/abhiram-unnam-a75133213/">LinkedIn.com/Abhiram Unnam</a></p>
+    </div>
+    <hr>
+
+    <div class="backr">
+
+  
         <h2>Background</h2>
         <p><h3>Education:</h3>
         Masters of Science - Information Technology<br> 
         University of Cincinnati (2023-Present)<br></p>
         
         <p>Bachelor of Science - Electronics and Communications<br>
-        SRM University AP (2019-2023)
+        SRM University AP (2019-2023)</p>
+
+        <h3> Skills </h3>
+
+        <p> Programming languages : C, Python, SQL, HTML, C++</p> 
+        <p> Operating Systems : Linux, Windows, MacOs</p>
+
+        <h3> Experience</h3>
+        <p>APSSDC : Internet of things Intern</p>
+        <p>MAY 2021 - JULY 2021</p>
+
+         <h3> Web Application Programming and Hacking - Projects</h3>
+         <button class="button" onclick="window.open('waph.html', '_blank');">Click here to view the course</button>
+
+
      
-        <h3> Resume </h3>
+        <h3> Resume </h3>   
+
+
+
+        <iframe src="ABHIRAM_UNNAM_RESUME.pdf" width="100%" height="500px" scrolling="auto"></iframe>
+
+</div>
+
+<div class="visit">
+    <a href="https://info.flagcounter.com/uEsf">
+        <img src="https://s01.flagcounter.com/count2/uEsf/bg_FFFFFF/txt_000000/border_02CC45/columns_2/maxflags_5/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0">
+    </a>
+</div>
+
+
+<script>
+    function pagevisit() {
+        var Visit = document.cookie.replace(/(?:(?:^|.*;\s*)lastVisit\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (Visit) {
+            document.getElementById("Message").innerText = "Welcome back! Your last visit was on " + Visit;
+        } 
+        else {
+            var currentDate = new Date().toLocaleString();
+            document.cookie = "lastVisit=" + currentDate;
+            document.getElementById("Message").innerText = "Welcome to my homepage!";
+        }
+    }
+    window.onload = pagevisit;
+</script>
+
+<p id="Message"></p>
+
+
+
     
-      <iframe src="https://mailuc-my.sharepoint.com/:b:/g/personal/unnamam_mail_uc_edu/EfYX1YwXy7BGjfZMb6kORl4BJIzVwVYN_Y-qBTLsB1eLpw?e=v4nHCe" width="100%" height="60px"></iframe>
-
-
-
-
-       </body>
+</body>
 </html>
