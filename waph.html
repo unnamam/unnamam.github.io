@@ -1,9 +1,255 @@
 <!DOCTYPE html>
+<html>
 <head>
-	<title>Profile Website</title>
-	<link rel="stylesheet" href="https://waph-uc.github.io/style1.css">
-	<h1> Abhiram Unnam</h1>
-	<h2>Contact Details</h2>
-	<p>Email : unnamam@mail.uc.edu
-	Mobile : +1 (513) 349-4284</p>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<title>WAPH-Abhiram Unnam</title>
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+crossorigin="anonymous"></script>
+
+<style>
+    .top {
+        text-align: center;
+        background-color: #343;
+        color: white;
+        padding: 50px;
+        text-align: center;
+
+    }
+
+    .analog {
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .digital{
+        text-align: center;
+        font-size: 22px;
+    }
+
+    #email{
+        text-align: center;
+        font-size: 22px;
+        background-color: red;
+        padding: 20px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .joke{
+        text-align: center;
+        font-size: 20px;
+        font-style: italic;
+        background-color: lightcyan;
+    }
+    .visit{
+        text-align: center;
+        font-size: 20px;
+    }
+    .currency{
+       
+    font-family: "Times new roman";
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 28px;
+    background-color: gray;
+    }
+
+    #countryFlag{
+        display: block;
+        margin: 0 auto; 
+        border: 2px solid black; 
+        
+    }
+    .buttonflag{
+        background-color: darkgray; 
+        color: black; 
+        font-size: 22px;
+        font-style: "Times New Roman";
+        border-radius: 5px;
+    }
+    .buttonflag:hover{
+        background-color: gray;
+    }
+
+    #exchangebutton{
+        background-color: black; 
+        color: white; 
+        font-size: 22px;
+        font-style: "Arial";
+        border-radius: 5px;
+    }
+    #exchangebutton:hover{
+        background-color:burlywood;
+    }
+
+    
+
+
+    
+</style>
+
+<body>
+<div class="top">
+<h1> Web Application Programming and Hacking </h1>
+<h2> Front-end web development lab </h2>
+<h3> Instructor : Dr. Phu Phung </h3>
+</div>
+<div id="email" onclick="showhideEmail()">Click here to view email</div>
+
+<script>
+var shown = false;
+
+function showhideEmail() {
+    if (shown) {
+        document.getElementById('email').innerHTML = "Show my email";
+        shown = false;
+    } else {
+        var myemail = "unnamam@mail.uc.edu";
+        document.getElementById('email').innerHTML = myemail;
+        shown = true;
+    }
+}
+</script>
+
+
+<div class="analog">
+<h2> Analog Clock</h2>
+<canvas id="analog-clock" width="200" height="200" style="background-color:#999"></canvas>
+<script src="https://waph-uc.github.io/clock.js"></script>
+<script>
+    var canvas = document.getElementById("analog-clock");
+    var ctx = canvas.getContext("2d");
+    var radius = canvas.height / 2;
+    ctx.translate(radius,radius);
+    radius=radius*0.90
+    setInterval(drawClock, 1000);
+
+	function drawClock(){
+        drawFace(ctx, radius);
+        drawNumbers(ctx, radius);
+        drawTime(ctx, radius);
+	}
+</script>
+
+<div class="digital">
+    <h2> Digital Clock </h2>
+    <div id="date"></div>
+</div>
+
+<script>
+setInterval(displayTime, 500);
+
+function displayTime() {
+    var now = new Date();
+    document.getElementById('date').innerHTML = "Current time: " + now;
+}
+</script>
+<div class="joke">
+<h2>Joke</h2>
+<div id="response"></div>
+
+<script>
+    $(document).ready(function() {
+       
+        $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
+            console.log("From jokeAPI: " + JSON.stringify(result));
+            $("#response").html("A programming joke : " + result.joke);
+        });
+        
+    });
+</script>
+</div>
+
+<div class="currency">
+    <div id="response">
+        <h2>Currency Exchange USD to other Countries</h2>
+        <ul id="rateList"></ul>
+    </div>
+    <button id="exchangebutton">Click to Show Exchange Rates</button>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Function to fetch and display exchange rates
+        function ExchangeRates() {
+            $.get("https://v6.exchangerate-api.com/v6/71c90fc90c87248fbfb63ddc/latest/USD", function(result) {
+                console.log("Exchange Rates: " + JSON.stringify(result));
+
+                var countries = ["INR", "EUR", "AUD", "JPY", "CAD"];
+
+                $.each(countries, function(index, country) {
+                    var exchange = result.conversion_rates[country];
+                    $("#rateList").append("<li>" + country + ": " + exchange + "</li>");
+                });
+            });
+        }
+
+        $("#exchangebutton").click(function() {
+
+            $("#rateList").empty();
+            ExchangeRates();
+        });
+    });
+</script>
+<h3>Click on the Button below to get random flags</h3>
+</div>
+<div class="flag">
+    <p style="text-align: center;">
+        <button onclick="displayRandomFlag()" class="buttonflag">Display Random Flag</button>
+    </p>
+        <br>
+    <img id="countryFlag">
+
+    <script>
+        function displayRandomFlag() {
+ 
+            const countryCodes = ["US","CA","IN","AE","GB","EU","AF","JP","ES"]
+
+            const randomIndex = Math.floor(Math.random() * countryCodes.length);
+            const randomCountryCode = countryCodes[randomIndex];
+
+            const imageUrl = `https://countryflagsapi.netlify.app/flag/${randomCountryCode}.svg`;
+            const imgElement = document.getElementById('countryFlag');
+            imgElement.src = imageUrl;
+            imgElement.alt = `Flag of ${randomCountryCode}`;
+        }
+    </script>
+</div>
+
+<div class="visit">
+<h3>Page Visitors</h3>
+<a href="https://info.flagcounter.com/uEsf">
+    <img src="https://s01.flagcounter.com/count2/uEsf/bg_FFFFFF/txt_000000/border_02CC45/columns_2/maxflags_5/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Flag Counter" border="0">
+</a>
+
+<script>
+    function pagevisit() {
+        var Visit = document.cookie.replace(/(?:(?:^|.*;\s*)lastVisit\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (Visit) {
+            document.getElementById("Message").innerText = "Welcome back! Your last visit was on " + Visit;
+        } 
+        else {
+            var currentDate = new Date().toLocaleString();
+            document.cookie = "lastVisit=" + currentDate;
+            document.getElementById("Message").innerText = "Welcome to my homepage!";
+        }
+    }
+    window.onload = pagevisit;
+</script>
+
+<p id="Message"></p>
+
+
+</div>
+
+
+			
+		</head>
+		</html>
+				
